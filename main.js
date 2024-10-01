@@ -26,7 +26,7 @@ const startStopTimer = () => {
 };
 
 document.addEventListener('keyup', (event) => { 
-    if (event.key === 'x') {
+    if (event.key === 'x' || event.key === ' ') {
         startStopTimer();
     }
 });
