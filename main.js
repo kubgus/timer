@@ -7,10 +7,13 @@ let running = false;
 let currentTime = DURATION;
 
 const formatTime = (seconds) => {
-    const minutes = Math.floor(seconds / 60);
+    const minutes = seconds < 0 ? Math.ceil(seconds / 60) - 1 : Math.floor(seconds / 60);
     const remainingSeconds = Math.abs(seconds % 60);
-    const formattedMinutes = minutes < 0 ? `-${minutes + 1}` : minutes;
-    const formattedSeconds = remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds;
+    let formattedMinutes = minutes < 0 ? minutes + 1 : minutes;
+    if (formattedMinutes == 0 && seconds < 0) {
+        formattedMinutes = `-0`;
+    }
+    let formattedSeconds = remainingSeconds < 10 ? `0${remainingSeconds}` : remainingSeconds;
     return `${formattedMinutes}:${formattedSeconds}`
 }
 
